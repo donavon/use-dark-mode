@@ -29,12 +29,12 @@ const useDarkMode = (initialState = false, config = defaultConfig) => {
     [darkMode]
   );
 
-  return [
+  return {
     darkMode,
-    () => setDarkMode(true),
-    () => setDarkMode(false),
-    toggleDarkMode,
-  ];
+    enable: () => setDarkMode(true),
+    disable: () => setDarkMode(false),
+    toggle: toggleDarkMode,
+  };
 };
 
 export default useDarkMode;
