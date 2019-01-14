@@ -11,17 +11,17 @@ A custom [React Hook](https://reactjs.org/docs/hooks-overview.html) to help you 
 1.  By toggling a CSS class on whatever element you specify (defaults to `document.body`).
     You then setup your CSS to display different views based on the presence of the selector. For example, the following CSS is used in the demo app to ease the background color in/out of dark mode.
 
-        ```css
-        body {
-          background-color: #fff;
-          color: #333;
-          transition: background-color 0.3s ease;
-        }
-        body.dark-mode {
-          background-color: #1a1919;
-          color: #999;
-        }
-        ```
+    ```css
+    body {
+      background-color: #fff;
+      color: #333;
+      transition: background-color 0.3s ease;
+    }
+    body.dark-mode {
+      background-color: #1a1919;
+      color: #999;
+    }
+    ```
 
 2.  If you don't use global classes, you can specify a callback and take care of the implementation of switching to dark mode yourself.
 
@@ -58,13 +58,12 @@ The configuration object contains the following.
 
 ### Return object
 
-isDarkMode, setDarkMode, clearDarkMode, toggleDarkMode
-| Key | Description |
-| :-------------------- | :--------------------------------------------------------- |
-| `isDarkMode` | A boolean containing the current state of dark mode. |
-| `setDarkMode` | A function that allows you to set dark mode to `true`. |
-| `clearDarkMode` | A function that allows you to set dark mode to `false`. |
-| `toggleDarkMode` | A function that allows you to toggle dark mode. |
+| Key              | Description                                             |
+| :--------------- | :------------------------------------------------------ |
+| `isDarkMode`     | A boolean containing the current state of dark mode.    |
+| `setDarkMode`    | A function that allows you to set dark mode to `true`.  |
+| `clearDarkMode`  | A function that allows you to set dark mode to `false`. |
+| `toggleDarkMode` | A function that allows you to toggle dark mode.         |
 
 ## Example
 
