@@ -1,0 +1,51 @@
+{
+  "name": "use-dark-mode",
+  "version": "0.0.2",
+  "description": "A custom React Hook to help you implement a \"dark mode\" component.",
+  "main": "dist/use-dark-mode.js",
+  "umd:main": "dist/use-dark-mode.umd.js",
+  "module": "dist/use-dark-mode.m.js",
+  "source": "src/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/donavon/use-dark-mode.git"
+  },
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "lint": "eslint src",
+    "test": "jest --verbose --coverage --silent",
+    "test:watch": "jest --watch --runInBand --silent",
+    "prebuild": "npm run lint && npm t && rimraf dist",
+    "build": "microbundle -o dist/ --sourcemap false --target web",
+    "dev": "microbundle watch -o dist/ --sourcemap false --compress false"
+  },
+  "keywords": [
+    "react-hooks",
+    "hooks",
+    "react",
+    "utils",
+    "lib",
+    "dark-mode"
+  ],
+  "author": "donavon",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "eslint": "^5.10.0",
+    "eslint-config-amex": "^9.0.0",
+    "jest": "^23.6.0",
+    "jest-dom": "^3.0.0",
+    "microbundle": "^0.9.0",
+    "react": "16.8.0-alpha.0",
+    "react-dom": "16.8.0-alpha.0",
+    "react-testing-library": "^5.4.2",
+    "rimraf": "^2.6.2"
+  },
+  "peerDependencies": {
+    "react": "16.8.0-alpha.0"
+  }
+}
