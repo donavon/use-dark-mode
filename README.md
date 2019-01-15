@@ -2,7 +2,7 @@
 
 A custom [React Hook](https://reactjs.org/docs/hooks-overview.html) to help you implement a "dark mode" component for your application.
 
-[![npm version](https://badge.fury.io/js/use-dark-mode.svg)](https://badge.fury.io/js/use-dark-mode)
+[![npm version](https://badge.fury.io/js/use-dark-mode.svg)](https://badge.fury.io/js/use-dark-mode) [![Build Status](https://travis-ci.com/donavon/use-dark-mode.svg?branch=develop)](https://travis-ci.com/donavon/use-dark-mode)
 
 ![usedarkmode-small](https://user-images.githubusercontent.com/887639/51113468-079ee100-17d0-11e9-8a35-e29b12b74740.gif)
 
@@ -23,7 +23,7 @@ A custom [React Hook](https://reactjs.org/docs/hooks-overview.html) to help you 
     }
     ```
 
-2.  If you don't use global classes, you can specify a callback and take care of the implementation of switching to dark mode yourself.
+2.  If you don't use global classes, you can specify an `onChange` handler and take care of the implementation of switching to dark mode yourself.
 
 ## Requirement ⚠️
 
@@ -39,31 +39,30 @@ $ npm i use-dark-mode
 ## Usage
 
 ```js
-const [isDarkMode, setDarkMode, clearDarkMode, toggleDarkMode] = useDarkMode(
-  false,
-  optionalConfigObject
-);
+const darkMode = useDarkMode(initialState, optionalConfigObject);
 ```
 
 ### Config
 
-You pass `useDarkMode` an `initialState` (whether it should be in dark mode by by default) and an optional configuration object.
-The configuration object contains the following.
+You pass `useDarkMode` an `initialState` (a boolean specifying whether it should be in dark mode
+by default) and an optional configuration object. The configuration object contains the following.
 
-| Key         | Description                                                                                                                                                                                                                                                                                       |
-| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `className` | The class to apply. Default = `dark-mode`.                                                                                                                                                                                                                                                        |
-| `element`   | The element to apply the class name. Default = `document.body`.                                                                                                                                                                                                                                   |
-| `callback`  | A callback function that will be called when the state changes and it is safe to access the DOM (i.e. it is called from within a `useEffect`). If you specify `callback` then `className` and `element` are ignored (i.e. no classes are automatically placed on the DOM). You have full control! |
+| Key         | Description                                                                                                                                                                                                                                                                                        |
+| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `className` | The class to apply. Default = `dark-mode`.                                                                                                                                                                                                                                                         |
+| `element`   | The element to apply the class name. Default = `document.body`.                                                                                                                                                                                                                                    |
+| `onChange`  | A function that will be called when the dark mode value changes and it is safe to access the DOM (i.e. it is called from within a `useEffect`). If you specify `onChange` then `className` and `element` are ignored (i.e. no classes are automatically placed on the DOM). You have full control! |
 
 ### Return object
 
-| Key              | Description                                             |
-| :--------------- | :------------------------------------------------------ |
-| `isDarkMode`     | A boolean containing the current state of dark mode.    |
-| `setDarkMode`    | A function that allows you to set dark mode to `true`.  |
-| `clearDarkMode`  | A function that allows you to set dark mode to `false`. |
-| `toggleDarkMode` | A function that allows you to toggle dark mode.         |
+A `darkMode` object is returned with the following properties.
+
+| Key         | Description                                             |
+| :---------- | :------------------------------------------------------ |
+| `value`     | A boolean containing the current state of dark mode.    |
+| `enable()`  | A function that allows you to set dark mode to `true`.  |
+| `disable()` | A function that allows you to set dark mode to `false`. |
+| `toggle()`  | A function that allows you to toggle dark mode.         |
 
 ## Example
 
@@ -78,17 +77,15 @@ import Toggle from './Toggle';
 import useDarkMode from 'use-dark-mode';
 
 const DarkModeToggle = () => {
-  const [isDarkMode, setDarkMode, clearDarkMode, toggleDarkMode] = useDarkMode(
-    false
-  );
+  const darkMode = useDarkMode(false);
 
   return (
     <div>
-      <button type="button" onClick={clearDarkMode}>
+      <button type="button" onClick={darkMode.disable}>
         ☀
       </button>
-      <Toggle checked={isDarkMode} onChange={toggleDarkMode} />
-      <button type="button" onClick={setDarkMode}>
+      <Toggle checked={darkMode.value} onChange={darkMode.toggle} />
+      <button type="button" onClick={darkMode.enable}>
         ☾
       </button>
     </div>
