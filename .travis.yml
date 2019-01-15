@@ -1,13 +1,15 @@
 language: node_js
 
 node_js:
-  - "10"
+  - "stable"
 
 jobs:
   include:
+    - stage: test
+      script: npm t
     - stage: npm release
       if: tag IS present
-      node_js: "10"
+      if: branch = master
       script: echo "Deploying to npm ..."
       deploy:
         provider: npm
