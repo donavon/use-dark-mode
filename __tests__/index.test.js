@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { render, cleanup } from 'react-testing-library';
+import { render, cleanup, fireEvent } from 'react-testing-library';
 import 'jest-dom/extend-expect';
 
 import useDarkMode from '../src';
@@ -20,36 +20,43 @@ const createTestElement = obj => ({
 });
 
 const Component = ({ initialDarkMode, config }) => {
-  const [isDarkMode, setDarkMode, clearDarkMode, toggleDarkMode] = useDarkMode(
-    initialDarkMode, config
-  );
+  const darkMode = useDarkMode(initialDarkMode, config);
   return (
     <Fragment>
-      <span data-testid="isDarkMode">{JSON.stringify(isDarkMode)}</span>
-      <button data-testid="setDarkMode" type="button" onClick={setDarkMode} />
-      <button data-testid="clearDarkMode" type="button" onClick={clearDarkMode} />
-      <button data-testid="toggleDarkMode" type="button" onClick={toggleDarkMode} />
+      <span data-testid="isDarkMode">{JSON.stringify(darkMode.value)}</span>
+      <button data-testid="setDarkMode" type="button" onClick={darkMode.enable} />
+      <button data-testid="clearDarkMode" type="button" onClick={darkMode.disable} />
+      <button data-testid="toggleDarkMode" type="button" onClick={darkMode.toggle} />
     </Fragment>
   );
 };
 
 describe('useDarkMode', () => {
-  test('import { useDarkMode } from "use-dark-mode"', () => {
+  test('import useDarkMode from "use-dark-mode"', () => {
     expect(typeof useDarkMode).toBe('function');
   });
-  test('`initialDarkMode` defaults to `false`', () => {
-    const { getByTestId } = render(<Component config={{ element: createTestElement({}) }} />);
-    const isDarkModeElement = getByTestId('isDarkMode');
-    expect(isDarkModeElement.textContent).toBe('false');
-  });
-  test('you can pass an `initialDarkMode`', () => {
+
+  test('you can pass an `initialValue`', () => {
     const {
       getByTestId,
     } = render(<Component initialDarkMode={true} config={{ element: createTestElement({}) }} />);
     const isDarkModeElement = getByTestId('isDarkMode');
     expect(isDarkModeElement.textContent).toBe('true');
   });
-  test('the class `className` is applied to the element `element`', (done) => {
+
+  test('`initialValue` defaults to `false`', () => {
+    const { getByTestId } = render(<Component config={{ element: createTestElement({}) }} />);
+    const isDarkModeElement = getByTestId('isDarkMode');
+    expect(isDarkModeElement.textContent).toBe('false');
+  });
+
+  test('you can pass an optional `config`', () => {
+    const { getByTestId } = render(<Component />);
+    const isDarkModeElement = getByTestId('isDarkMode');
+    expect(isDarkModeElement.textContent).toBe('false');
+  });
+
+  test('`config.className` is applied to the element `config.element`', (done) => {
     const test = {};
     const {
       getByTestId,
@@ -59,40 +66,46 @@ describe('useDarkMode', () => {
       done();
     }, 1);
   });
-  test('you can pass an `callback` that is called with the current state of dark mode', (done) => {
-    const callback = (isDarkMode) => {
+
+  test('you can pass a `config.onChange` that is called with the current value of dark mode', (done) => {
+    const onChange = (isDarkMode) => {
       expect(isDarkMode).toBe(true);
       done();
     };
-    const { getByTestId } = render(<Component initialDarkMode={true} config={{ callback }} />);
+    render(<Component initialDarkMode={true} config={{ onChange }} />);
   });
-  // test('supports a custom initial index of 0, 1, or 2', () => {
-  //   [0, 1, 2].forEach((i) => {
-  //     const { container } = render(<Component initialColorIndex={i} />);
-  //     const child = container.firstChild;
-  //     expect(child.textContent).toBe(`${i}`);
-  //   });
-  // });
-  // test('has a default duration array of [5000, 4000, 1000] msecs', () => {
-  //   const { container } = render(<Component />);
-  //   const child = container.firstChild;
-  //   expect(child.textContent).toBe('0');
-  //   jest.advanceTimersByTime(5000);
-  //   expect(child.textContent).toBe('1');
-  //   jest.advanceTimersByTime(4000);
-  //   expect(child.textContent).toBe('2');
-  //   jest.advanceTimersByTime(1000);
-  //   expect(child.textContent).toBe('0');
-  // });
-  // test('supports a custom duration array', () => {
-  //   const { container } = render(<Component durations={[500, 400, 100]} />);
-  //   const child = container.firstChild;
-  //   expect(child.textContent).toBe('0');
-  //   jest.advanceTimersByTime(500);
-  //   expect(child.textContent).toBe('1');
-  //   jest.advanceTimersByTime(400);
-  //   expect(child.textContent).toBe('2');
-  //   jest.advanceTimersByTime(100);
-  //   expect(child.textContent).toBe('0');
-  // });
+
+  test('you can call `darkMode.enable` to set dark mode', () => {
+    const {
+      getByTestId,
+    } = render(<Component initialDarkMode={false} config={{ element: createTestElement({}) }} />);
+    const button = getByTestId('setDarkMode');
+    fireEvent.click(button);
+    const isDarkModeElement = getByTestId('isDarkMode');
+    expect(isDarkModeElement.textContent).toBe('true');
+  });
+
+  test('you can call `darkMode.disable` to clear dark mode', () => {
+    const {
+      getByTestId,
+    } = render(<Component initialDarkMode={true} config={{ element: createTestElement({}) }} />);
+    const button = getByTestId('clearDarkMode');
+    fireEvent.click(button);
+    const isDarkModeElement = getByTestId('isDarkMode');
+    expect(isDarkModeElement.textContent).toBe('false');
+  });
+
+  test('you can call `darkMode.toggle` to toggle dark mode on/off/on', () => {
+    const {
+      getByTestId,
+    } = render(<Component initialDarkMode={true} config={{ element: createTestElement({}) }} />);
+    const button = getByTestId('toggleDarkMode');
+    const isDarkModeElement = getByTestId('isDarkMode');
+    fireEvent.click(button);
+    expect(isDarkModeElement.textContent).toBe('false');
+    fireEvent.click(button);
+    expect(isDarkModeElement.textContent).toBe('true');
+    fireEvent.click(button);
+    expect(isDarkModeElement.textContent).toBe('false');
+  });
 });

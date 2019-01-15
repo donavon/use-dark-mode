@@ -1,40 +1,45 @@
 import { useState, useEffect } from 'react';
 
 const defaultClassName = 'dark-mode';
-const bodyElement = global.document.body;
+const defaultElement = global.document.body;
 
 const defaultConfig = {
   className: defaultClassName,
-  element: bodyElement,
+  element: defaultElement,
 };
 
 const setDOMDarkMode = (element, method, className) => {
   element.classList[method](className);
 };
 
-const useDarkMode = (initialState = false, config = defaultConfig) => {
-  const [darkMode, setDarkMode] = useState(initialState);
-  const toggleDarkMode = () => setDarkMode(current => !current);
+const useDarkMode = (initialValue = false, config = {}) => {
+  const [value, setDarkMode] = useState(initialValue);
+  const toggle = () => setDarkMode(current => !current);
   const { element, className } = { ...defaultConfig, ...config };
-  const defaultCallback = (mode) => {
-    const method = mode ? 'add' : 'remove';
+
+  const defaultOnChange = (val) => {
+    const method = val ? 'add' : 'remove';
     setDOMDarkMode(element, method, className);
   };
-  const callback = config.callback || defaultCallback;
+  const onChange = config.onChange || defaultOnChange;
 
   useEffect(
     () => {
-      callback(darkMode);
+      onChange(value);
     },
-    [darkMode]
+    [value]
   );
 
-  return [
-    darkMode,
-    () => setDarkMode(true),
-    () => setDarkMode(false),
-    toggleDarkMode,
-  ];
+  return {
+    value,
+    enable() {
+      setDarkMode(true);
+    },
+    disable() {
+      setDarkMode(false);
+    },
+    toggle,
+  };
 };
 
 export default useDarkMode;
