@@ -1,6 +1,6 @@
 {
   "name": "use-dark-mode",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "A custom React Hook to help you implement a \"dark mode\" component.",
   "main": "dist/use-dark-mode.js",
   "umd:main": "dist/use-dark-mode.umd.js",
