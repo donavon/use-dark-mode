@@ -22,7 +22,7 @@ const createTestElement = obj => ({
 
 describe('useDarkMode', () => {
   test('import useDarkMode from "use-dark-mode"', () => {
-    expect(typeof useDarkModeProxy).toBe('function');
+    expect(typeof useDarkMode).toBe('function');
   });
 
   test('you can pass an `initialValue`', () => {
