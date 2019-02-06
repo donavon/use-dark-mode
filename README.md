@@ -27,8 +27,7 @@ A custom [React Hook](https://reactjs.org/docs/hooks-overview.html) to help you 
 
 ## Requirement ⚠️
 
-To use `use-dark-mode`, you must use `react@16.8.0-alpha.0`. React Hooks is currently at
-**[RFC](https://github.com/reactjs/rfcs/pull/68)** stage.
+To use `use-dark-mode`, you must use `react@16.8.0` or greater which includes Hooks.
 
 ## Installation
 
