@@ -25,7 +25,16 @@ A custom [React Hook](https://reactjs.org/docs/hooks-overview.html) to help you 
 
 2.  If you don't use global classes, you can specify an `onChange` handler and take care of the implementation of switching to dark mode yourself.
 
-## Requirement ⚠️
+## New in Version 2
+
+* `useDarkMode` now persists between sessions. It stores the user setting in
+`localStorage`.
+
+* It shares dark mode state with all other `useDarkMode` components on the page.
+
+* It shares dark mode state with all other tabs/browser windows.
+
+## Requirement
 
 To use `use-dark-mode`, you must use `react@16.8.0` or greater which includes Hooks.
 
@@ -48,9 +57,10 @@ by default) and an optional configuration object. The configuration object conta
 
 | Key         | Description                                                                                                                                                                                                                                                                                        |
 | :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `className` | The class to apply. Default = `dark-mode`.                                                                                                                                                                                                                                                         |
+| `classNameDark` | The class to apply. Default = `dark-mode`.                                                                                                                                                                                                                                                         |
+| `classNameLight` | The class to apply. Default = `light-mode`.                                                                                                                                                                                                                                                         |
 | `element`   | The element to apply the class name. Default = `document.body`.                                                                                                                                                                                                                                    |
-| `onChange`  | A function that will be called when the dark mode value changes and it is safe to access the DOM (i.e. it is called from within a `useEffect`). If you specify `onChange` then `className` and `element` are ignored (i.e. no classes are automatically placed on the DOM). You have full control! |
+| `onChange`  | A function that will be called when the dark mode value changes and it is safe to access the DOM (i.e. it is called from within a `useEffect`). If you specify `onChange` then `classNameDark`, `classNameLight`, and `element` are ignored (i.e. no classes are automatically placed on the DOM). You have full control! |
 
 ### Return object
 
