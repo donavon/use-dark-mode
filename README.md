@@ -25,7 +25,7 @@ A custom [React Hook](https://reactjs.org/docs/hooks-overview.html) to help you 
 
 2.  If you don't use global classes, you can specify an `onChange` handler and take care of the implementation of switching to dark mode yourself.
 
-## New in Version 2
+## New in Version 2.x
 
 * `useDarkMode` now persists between sessions. It stores the user setting in
 `localStorage`.
@@ -33,6 +33,10 @@ A custom [React Hook](https://reactjs.org/docs/hooks-overview.html) to help you 
 * It shares dark mode state with all other `useDarkMode` components on the page.
 
 * It shares dark mode state with all other tabs/browser windows.
+
+* The initial dark mode is queried from the system. Note: this requires a browser that supports the `prefers-color-scheme: dark` media query
+(currently only [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/release-notes/))
+and a system that supports dark mode, such as macOS Mojave.
 
 ## Requirement
 
