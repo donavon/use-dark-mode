@@ -1,25 +1,40 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
+import createPersistedState from 'use-persisted-state';
 
-const defaultClassName = 'dark-mode';
-const defaultElement = global.document.body;
+const preferDarkQuery = '(prefers-color-scheme: dark)';
+const usePersistedStateKey = 'darkMode';
+const usePersistedDarkModeState = createPersistedState(usePersistedStateKey);
 
+const defaultClassNameDark = 'dark-mode';
+const defaultClassNameLight = 'light-mode';
 const defaultConfig = {
-  className: defaultClassName,
-  element: defaultElement,
+  classNameDark: defaultClassNameDark,
+  classNameLight: defaultClassNameLight,
+  element: document.body,
 };
 
-const setDOMDarkMode = (element, method, className) => {
+const setDOMClass = (element, method, className) => {
   element.classList[method](className);
 };
 
+const queryDarkModeMedia = usersInitialState => () => {
+  const mql = global.matchMedia(preferDarkQuery);
+  const supportsColorSchemeQuery = mql.media === preferDarkQuery;
+  return supportsColorSchemeQuery ? mql.matches : usersInitialState;
+};
+
 const useDarkMode = (initialValue = false, config = {}) => {
-  const [value, setDarkMode] = useState(initialValue);
-  const toggle = () => setDarkMode(current => !current);
-  const { element, className } = { ...defaultConfig, ...config };
+  const [value, setDarkMode] = usePersistedDarkModeState(
+    queryDarkModeMedia(initialValue)
+  );
+  const { element, classNameDark, classNameLight } = {
+    ...defaultConfig,
+    ...config,
+  };
 
   const defaultOnChange = (val) => {
-    const method = val ? 'add' : 'remove';
-    setDOMDarkMode(element, method, className);
+    setDOMClass(element, val ? 'add' : 'remove', classNameDark);
+    setDOMClass(element, !val ? 'add' : 'remove', classNameLight);
   };
   const onChange = config.onChange || defaultOnChange;
 
@@ -32,13 +47,9 @@ const useDarkMode = (initialValue = false, config = {}) => {
 
   return {
     value,
-    enable() {
-      setDarkMode(true);
-    },
-    disable() {
-      setDarkMode(false);
-    },
-    toggle,
+    enable: useCallback(() => setDarkMode(true)),
+    disable: useCallback(() => setDarkMode(false)),
+    toggle: useCallback(() => setDarkMode(current => !current)),
   };
 };
 
