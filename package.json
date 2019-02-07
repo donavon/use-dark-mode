@@ -57,5 +57,8 @@
         "statements": 100
       }
     }
+  },
+  "dependencies": {
+    "use-persisted-state": "^0.1.0"
   }
 }
