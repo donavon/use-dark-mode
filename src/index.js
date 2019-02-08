@@ -12,13 +12,13 @@ const defaultConfig = {
   classNameLight: defaultClassNameLight,
   element: document.body,
 };
+const mql = global.matchMedia(preferDarkQuery);
 
 const setDOMClass = (element, method, className) => {
   element.classList[method](className);
 };
 
 const queryDarkModeMedia = usersInitialState => () => {
-  const mql = global.matchMedia(preferDarkQuery);
   const supportsColorSchemeQuery = mql.media === preferDarkQuery;
   return supportsColorSchemeQuery ? mql.matches : usersInitialState;
 };
@@ -44,6 +44,15 @@ const useDarkMode = (initialValue = false, config = {}) => {
     },
     [value]
   );
+
+  useEffect(() => {
+    const handler = ({ matches }) => setDarkMode(matches);
+
+    mql.addListener(handler);
+    return () => {
+      mql.removeListener(handler);
+    };
+  }, []);
 
   return {
     value,
