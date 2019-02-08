@@ -38,6 +38,9 @@ A custom [React Hook](https://reactjs.org/docs/hooks-overview.html) to help you 
 (currently only [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/release-notes/))
 and a system that supports dark mode, such as macOS Mojave.
 
+* Changing the system dark mode state will also change the state of `useDarkMode`
+(i.e, change to light mode in the system will change to light mode in your app).
+
 ## Requirement
 
 To use `use-dark-mode`, you must use `react@16.8.0` or greater which includes Hooks.
@@ -108,11 +111,23 @@ const DarkModeToggle = () => {
 export default DarkModeToggle;
 ```
 
+## That flash!
+
+If your CSS is setup to default to light mode, but the user selects dark mode,
+the next time they visit your app, they will be in dark mode.
+However, the user will see a flash of light mode before the app is spun up
+and `useDarkMode` is called.
+
+To prevent this, I've included some vanilla JavaScript that you can insert in your
+`index.html` just after the `<body>` tag. It is in a file named `noflash.js.txt`.
+You can either insert the contents of this file in a `<script>` tag or automate the
+step in your build process.
+
 ## Live demo
 
-You can view/edit the dark mode demo app on CodeSandbox.
+You can view/edit a dark mode demo app on CodeSandbox.
 
-[![Edit demo app on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/donavon/use-step-multi-step-form-demo/tree/master/?module=%2Fsrc%2FDarkModeToggle.jsx)
+[![Edit demo app on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/mzj64x80ny)
 
 ## License
 
