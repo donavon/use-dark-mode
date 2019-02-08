@@ -1,6 +1,8 @@
 import { useEffect, useCallback } from 'react';
 import createPersistedState from 'use-persisted-state';
 
+const ONCE = [];
+
 const preferDarkQuery = '(prefers-color-scheme: dark)';
 const usePersistedStateKey = 'darkMode';
 const usePersistedDarkModeState = createPersistedState(usePersistedStateKey);
@@ -57,13 +59,13 @@ const useDarkMode = (initialValue = false, config = {}) => {
     return () => {
       mql.removeListener(handler);
     };
-  }, []);
+  }, ONCE);
 
   return {
     value,
-    enable: useCallback(() => setDarkMode(true)),
-    disable: useCallback(() => setDarkMode(false)),
-    toggle: useCallback(() => setDarkMode(current => !current)),
+    enable: useCallback(() => setDarkMode(true), ONCE),
+    disable: useCallback(() => setDarkMode(false), ONCE),
+    toggle: useCallback(() => setDarkMode(current => !current), ONCE),
   };
 };
 
