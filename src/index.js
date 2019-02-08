@@ -12,7 +12,12 @@ const defaultConfig = {
   classNameLight: defaultClassNameLight,
   element: document.body,
 };
-const mql = global.matchMedia(preferDarkQuery);
+const mql = global.matchMedia
+  ? global.matchMedia(preferDarkQuery)
+  : {
+    addListener() {},
+    removeListener() {},
+  };
 
 const setDOMClass = (element, method, className) => {
   element.classList[method](className);
