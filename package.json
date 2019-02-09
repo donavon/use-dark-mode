@@ -6,6 +6,7 @@
   "umd:main": "dist/use-dark-mode.umd.js",
   "module": "dist/use-dark-mode.m.js",
   "source": "src/index.js",
+  "types": "types/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
