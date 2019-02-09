@@ -12,7 +12,7 @@ const defaultClassNameLight = 'light-mode';
 const defaultConfig = {
   classNameDark: defaultClassNameDark,
   classNameLight: defaultClassNameLight,
-  element: document.body,
+  element: global.document.body,
 };
 const mql = global.matchMedia
   ? global.matchMedia(preferDarkQuery)
