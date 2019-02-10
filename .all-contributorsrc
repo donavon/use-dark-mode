@@ -61,6 +61,15 @@
         "userTesting",
         "bug"
       ]
+    },
+    {
+      "login": "ideas",
+      "name": "Ideapod",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3660370?v=4",
+      "profile": "https://www.ideapod.com/",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7
