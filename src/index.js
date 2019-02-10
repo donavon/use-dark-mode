@@ -1,6 +1,15 @@
 import { useEffect, useCallback } from 'react';
 import createPersistedState from 'use-persisted-state';
 
+const noop = () => {};
+
+const defaultElement = (global.document && global.document.body) || {
+  classList: {
+    add: noop,
+    remove: noop,
+  },
+};
+
 const ONCE = [];
 
 const preferDarkQuery = '(prefers-color-scheme: dark)';
@@ -12,13 +21,13 @@ const defaultClassNameLight = 'light-mode';
 const defaultConfig = {
   classNameDark: defaultClassNameDark,
   classNameLight: defaultClassNameLight,
-  element: global.document.body,
+  element: defaultElement,
 };
 const mql = global.matchMedia
   ? global.matchMedia(preferDarkQuery)
   : {
-    addListener() {},
-    removeListener() {},
+    addListener: noop,
+    removeListener: noop,
   };
 
 const setDOMClass = (element, method, className) => {

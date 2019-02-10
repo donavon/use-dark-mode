@@ -1,7 +1,9 @@
-// Insert this script as-is in your index.html right after the <body> tag.
+// Insert this script in your index.html right after the <body> tag.
 // This will help to prevent a flash if dark mode is the default.
 
 (function() {
+  // Change these if you use sometthing different in your hook.
+  var storageKey = 'darkMode';
   var classNameDark = 'dark-mode';
   var classNameLight = 'light-mode';
 
@@ -15,7 +17,7 @@
   var supportsColorSchemeQuery = mql.media === preferDarkQuery;
   var localStorageTheme = null;
   try {
-    localStorageTheme = localStorage.getItem('darkMode');
+    localStorageTheme = localStorage.getItem(storageKey);
   } catch (err) {}
   var localStorageExists = localStorageTheme !== null;
   if (localStorageExists) {
@@ -29,10 +31,10 @@
   } else if (supportsColorSchemeQuery) {
     // source of truth from system
     setClassOnDocumentBody(mql.matches);
-    localStorage.setItem('darkMode', mql.matches);
+    localStorage.setItem(storageKey, mql.matches);
   } else {
     // source of truth from document.body
     var isDarkMode = document.body.classList.contains(classNameDark);
-    localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
+    localStorage.setItem(storageKey, JSON.stringify(isDarkMode));
   }
 })();

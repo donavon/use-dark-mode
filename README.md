@@ -1,9 +1,8 @@
 # use-dark-mode
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors)
 
 A custom [React Hook](https://reactjs.org/docs/hooks-overview.html) to help you implement a "dark mode" component for your application.
 
-[![npm version](https://badge.fury.io/js/use-dark-mode.svg)](https://badge.fury.io/js/use-dark-mode) [![Build Status](https://travis-ci.com/donavon/use-dark-mode.svg?branch=develop)](https://travis-ci.com/donavon/use-dark-mode)
+[![npm version](https://badge.fury.io/js/use-dark-mode.svg)](https://badge.fury.io/js/use-dark-mode) [![Build Status](https://travis-ci.com/donavon/use-dark-mode.svg?branch=develop)](https://travis-ci.com/donavon/use-dark-mode) [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors)
 
 ![usedarkmode-small](https://user-images.githubusercontent.com/887639/51113468-079ee100-17d0-11e9-8a35-e29b12b74740.gif)
 
@@ -13,7 +12,7 @@ A custom [React Hook](https://reactjs.org/docs/hooks-overview.html) to help you 
     You then setup your CSS to display different views based on the presence of the selector. For example, the following CSS is used in the demo app to ease the background color in/out of dark mode.
 
     ```css
-    body {
+    body.light-mode {
       background-color: #fff;
       color: #333;
       transition: background-color 0.3s ease;
@@ -41,6 +40,8 @@ and a system that supports dark mode, such as macOS Mojave.
 
 * Changing the system dark mode state will also change the state of `useDarkMode`
 (i.e, change to light mode in the system will change to light mode in your app).
+
+* Support for Server Side Rendering (SSR) in version 2.2 and above.
 
 ## Requirement
 
@@ -89,9 +90,9 @@ when de-selected.
 
 ```jsx
 import React from 'react';
+import useDarkMode from 'use-dark-mode';
 
 import Toggle from './Toggle';
-import useDarkMode from 'use-dark-mode';
 
 const DarkModeToggle = () => {
   const darkMode = useDarkMode(false);
@@ -120,7 +121,7 @@ However, the user will see a flash of light mode before the app is spun up
 and `useDarkMode` is called.
 
 To prevent this, I've included some vanilla JavaScript that you can insert in your
-`index.html` just after the `<body>` tag. It is in a file named `noflash.js.txt`.
+`index.html` just after the `<body>` tag. It is in a file named [`noflash.js.txt](https://github.com/donavon/use-dark-mode/blob/develop/noflash.js.txt).
 You can either insert the contents of this file in a `<script>` tag or automate the
 step in your build process.
 
