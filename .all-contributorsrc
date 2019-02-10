@@ -51,6 +51,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "fxbabys",
+      "name": "Jeremy",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/24556921?v=4",
+      "profile": "https://github.com/fxbabys",
+      "contributions": [
+        "userTesting",
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7
