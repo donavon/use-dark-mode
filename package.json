@@ -1,6 +1,6 @@
 {
   "name": "use-dark-mode",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "A custom React Hook to help you implement a \"dark mode\" component.",
   "main": "dist/use-dark-mode.js",
   "umd:main": "dist/use-dark-mode.umd.js",
@@ -47,7 +47,7 @@
     "rimraf": "^2.6.2"
   },
   "peerDependencies": {
-    "react": "16.8.0"
+    "react": "^16.8.0"
   },
   "jest": {
     "coverageThreshold": {
