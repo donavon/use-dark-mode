@@ -121,7 +121,7 @@ However, the user will see a flash of light mode before the app is spun up
 and `useDarkMode` is called.
 
 To prevent this, I've included some vanilla JavaScript that you can insert in your
-`index.html` just after the `<body>` tag. It is in a file named [`noflash.js.txt](https://github.com/donavon/use-dark-mode/blob/develop/noflash.js.txt).
+`index.html` just after the `<body>` tag. It is in a file named [noflash.js.txt](https://github.com/donavon/use-dark-mode/blob/develop/noflash.js.txt).
 You can either insert the contents of this file in a `<script>` tag or automate the
 step in your build process.
 
