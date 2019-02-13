@@ -1,45 +1,50 @@
 import { useEffect, useCallback, useMemo } from 'react';
+import useEventListener from '@use-it/event-listener';
 
-import {
-  usePersistedDarkModeState,
-  getInitialValue,
-  getOnChange,
-  mql,
-} from './utils';
+import initialize from './initialize';
 
 const ONCE = [];
 
-const useDarkMode = (initialValue = false, config = {}) => {
-  const [state, setState] = usePersistedDarkModeState(
-    getInitialValue(initialValue)
-  );
-
-  const {
-    onChange, element, classNameDark, classNameLight,
-  } = config;
-
-  const stateChangeCallback = useMemo(() => getOnChange(config), [
-    onChange,
+const useDarkMode = (
+  initialValue = false,
+  {
     element,
     classNameDark,
     classNameLight,
-  ]);
-
-  useEffect(
-    () => {
-      stateChangeCallback(state);
-    },
-    [stateChangeCallback, state]
+    onChange,
+    storageKey = 'darkMode',
+    storageProvider,
+    global,
+  } = {}
+) => {
+  const {
+    usePersistedDarkModeState,
+    getDefaultOnChange,
+    getInitialValue,
+    mediaQueryEventTarget,
+  } = useMemo(
+    () => initialize(storageKey, storageProvider, global),
+    [storageKey, storageProvider, global]
   );
 
-  useEffect(() => {
-    const mediaChangeHandler = ({ matches }) => setState(matches);
+  const [state, setState] = usePersistedDarkModeState(getInitialValue(initialValue));
 
-    mql.addListener(mediaChangeHandler);
-    return () => {
-      mql.removeListener(mediaChangeHandler);
-    };
-  }, ONCE);
+  const stateChangeCallback = useMemo(
+    () => onChange || getDefaultOnChange(element, classNameDark, classNameLight),
+    [onChange, element, classNameDark, classNameLight]
+  );
+
+  // Call the onChange handler
+  useEffect(() => {
+    stateChangeCallback(state);
+  }, [stateChangeCallback, state]);
+
+  // Listen for media changes and set state.
+  useEventListener(
+    'change',
+    ({ matches }) => setState(matches),
+    mediaQueryEventTarget
+  );
 
   return {
     value: state,
