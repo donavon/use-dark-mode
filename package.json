@@ -1,6 +1,9 @@
 {
   "name": "use-dark-mode",
   "version": "2.2.2",
+  "publishConfig": {
+    "tag": "latest"
+  },
   "description": "A custom React Hook to help you implement a \"dark mode\" component.",
   "main": "dist/use-dark-mode.js",
   "umd:main": "dist/use-dark-mode.umd.js",
@@ -60,6 +63,7 @@
     }
   },
   "dependencies": {
+    "@use-it/event-listener": "^0.1.2",
     "use-persisted-state": "^0.3.0"
   }
 }
