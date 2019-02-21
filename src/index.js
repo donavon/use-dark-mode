@@ -3,8 +3,6 @@ import useEventListener from '@use-it/event-listener';
 
 import initialize from './initialize';
 
-const ONCE = [];
-
 const useDarkMode = (
   initialValue = false,
   {
@@ -31,7 +29,7 @@ const useDarkMode = (
 
   const stateChangeCallback = useMemo(
     () => onChange || getDefaultOnChange(element, classNameDark, classNameLight),
-    [onChange, element, classNameDark, classNameLight]
+    [onChange, element, classNameDark, classNameLight, getDefaultOnChange]
   );
 
   // Call the onChange handler
@@ -48,9 +46,9 @@ const useDarkMode = (
 
   return {
     value: state,
-    enable: useCallback(() => setState(true), ONCE),
-    disable: useCallback(() => setState(false), ONCE),
-    toggle: useCallback(() => setState(current => !current), ONCE),
+    enable: useCallback(() => setState(true), [setState]),
+    disable: useCallback(() => setState(false), [setState]),
+    toggle: useCallback(() => setState(current => !current), [setState]),
   };
 };
 
