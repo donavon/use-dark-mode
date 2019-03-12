@@ -139,6 +139,8 @@ step in your build process.
 
 Note that if you change any of the default—such as `storageKey` or `classNameDark` for example—the `noflash.js` file will need to be modified with the same values.
 
+> Gatsby users may leverage [`gatsby-plugin-use-dark-mode`](https://github.com/wKovacs64/gatsby-plugin-use-dark-mode#readme) to inject `noflash.js` for you.
+
 ## Sample Apps
 
 Here is a list of apps build with `use-dark-mode`.
