@@ -61,6 +61,15 @@
         "userTesting",
         "bug"
       ]
+    },
+    {
+      "login": "janosh",
+      "name": "Janosh Riebesell",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/30958850?v=4",
+      "profile": "http://janosh.io",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7
