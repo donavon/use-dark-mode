@@ -41,7 +41,7 @@ about it.
 - It shares dark mode state with all other tabs/browser windows.
 
 - The initial dark mode is queried from the system. Note: this requires a browser that supports the `prefers-color-scheme: dark` media query
-  (currently only [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/release-notes/))
+  ([currently Chrome, Firefox, Safari and Edge](https://caniuse.com/#search=prefers-color-scheme))
   and a system that supports dark mode, such as macOS Mojave.
 
 - Changing the system dark mode state will also change the state of `useDarkMode`
