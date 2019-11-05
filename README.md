@@ -41,7 +41,7 @@ about it.
 - It shares dark mode state with all other tabs/browser windows.
 
 - The initial dark mode is queried from the system. Note: this requires a browser that supports the `prefers-color-scheme: dark` media query
-  (currently only [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/release-notes/))
+  ([currently Chrome, Firefox, Safari and Edge](https://caniuse.com/#search=prefers-color-scheme))
   and a system that supports dark mode, such as macOS Mojave.
 
 - Changing the system dark mode state will also change the state of `useDarkMode`
@@ -76,7 +76,7 @@ by default) and an optional `darkModeConfig` object. The configuration object ma
 | `classNameLight`  | The class to apply. Default = `light-mode`.                                                                                                                                                                                                                                                                               |
 | `element`         | The element to apply the class name. Default = `document.body`.                                                                                                                                                                                                                                                           |
 | `onChange`        | A function that will be called when the dark mode value changes and it is safe to access the DOM (i.e. it is called from within a `useEffect`). If you specify `onChange` then `classNameDark`, `classNameLight`, and `element` are ignored (i.e. no classes are automatically placed on the DOM). You have full control! |
-| `storageKey`      | A string that will be used by the `storageProvider` to persist the dark mode value. If you specify a value of `null`, nothing will not be persisted. Default = `darkMode`.                                                                                                                                                                                                                   |
+| `storageKey`      | A string that will be used by the `storageProvider` to persist the dark mode value. If you specify a value of `null`, nothing will be persisted. Default = `darkMode`.                                                                                                                                                                                                                   |
 | `storageProvider` | A storage provider. Default = `localStorage`. You will generally never need to change this value.                                                                                                                                                                                                                       |
 
 ### Return object
