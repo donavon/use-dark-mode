@@ -156,7 +156,7 @@ class MyDocument extends Document {
       <Html>
         <Head />
         <body>
-          <script src="attach-dark-mode.js" />
+          <script src="noflash.js" />
           <Main />
           <NextScript />
         </body>
