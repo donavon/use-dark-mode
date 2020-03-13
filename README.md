@@ -139,7 +139,34 @@ step in your build process.
 
 Note that if you change any of the default—such as `storageKey` or `classNameDark` for example—the `noflash.js` file will need to be modified with the same values.
 
-> Gatsby users may leverage [`gatsby-plugin-use-dark-mode`](https://github.com/wKovacs64/gatsby-plugin-use-dark-mode#readme) to inject `noflash.js` for you.
+### Gatsby
+
+Gatsby users may leverage [`gatsby-plugin-use-dark-mode`](https://github.com/wKovacs64/gatsby-plugin-use-dark-mode#readme) to inject `noflash.js` for you.
+
+### Next.js
+
+For next.js uses copy the `noflash.js.txt` to your `public` folder (`public/noflash.js`) and then create a `_document.js` and include the script **before** `<Main />`.
+
+```js
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+
+class MyDocument extends Document {
+  render() {
+    return (
+      <Html>
+        <Head />
+        <body>
+          <script src="noflash.js" />
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}
+
+export default MyDocument;
+```
 
 ## Sample Apps
 
@@ -157,18 +184,22 @@ If you have an app you would like to include on this list, open a PR.
 Thanks goes to these wonderful people ([emoji key](https://github.com/all-contributors/all-contributors#emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="http://donavon.com"><img src="https://avatars3.githubusercontent.com/u/887639?v=4" width="100px;" alt="Donavon West"/><br /><sub><b>Donavon West</b></sub></a><br /><a href="#infra-donavon" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/donavon/use-dark-mode/commits?author=donavon" title="Tests">⚠️</a> <a href="#example-donavon" title="Examples">💡</a> <a href="#ideas-donavon" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-donavon" title="Maintenance">🚧</a> <a href="#review-donavon" title="Reviewed Pull Requests">👀</a> <a href="#tool-donavon" title="Tools">🔧</a> <a href="https://github.com/donavon/use-dark-mode/commits?author=donavon" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/revelcw"><img src="https://avatars2.githubusercontent.com/u/29359616?v=4" width="100px;" alt="Revel Carlberg West"/><br /><sub><b>Revel Carlberg West</b></sub></a><br /><a href="#ideas-revelcw" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://github.com/Andarist"><img src="https://avatars2.githubusercontent.com/u/9800850?v=4" width="100px;" alt="Mateusz Burzyński"/><br /><sub><b>Mateusz Burzyński</b></sub></a><br /><a href="https://github.com/donavon/use-dark-mode/commits?author=Andarist" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/wKovacs64"><img src="https://avatars1.githubusercontent.com/u/1288694?v=4" width="100px;" alt="Justin Hall"/><br /><sub><b>Justin Hall</b></sub></a><br /><a href="https://github.com/donavon/use-dark-mode/commits?author=wKovacs64" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/fxbabys"><img src="https://avatars1.githubusercontent.com/u/24556921?v=4" width="100px;" alt="Jeremy"/><br /><sub><b>Jeremy</b></sub></a><br /><a href="#userTesting-fxbabys" title="User Testing">📓</a> <a href="https://github.com/donavon/use-dark-mode/issues?q=author%3Afxbabys" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="http://janosh.io"><img src="https://avatars0.githubusercontent.com/u/30958850?v=4" width="100px;" alt="Janosh Riebesell"/><br /><sub><b>Janosh Riebesell</b></sub></a><br /><a href="https://github.com/donavon/use-dark-mode/commits?author=janosh" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://donavon.com"><img src="https://avatars3.githubusercontent.com/u/887639?v=4" width="100px;" alt=""/><br /><sub><b>Donavon West</b></sub></a><br /><a href="#infra-donavon" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/donavon/use-dark-mode/commits?author=donavon" title="Tests">⚠️</a> <a href="#example-donavon" title="Examples">💡</a> <a href="#ideas-donavon" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-donavon" title="Maintenance">🚧</a> <a href="https://github.com/donavon/use-dark-mode/pulls?q=is%3Apr+reviewed-by%3Adonavon" title="Reviewed Pull Requests">👀</a> <a href="#tool-donavon" title="Tools">🔧</a> <a href="https://github.com/donavon/use-dark-mode/commits?author=donavon" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/revelcw"><img src="https://avatars2.githubusercontent.com/u/29359616?v=4" width="100px;" alt=""/><br /><sub><b>Revel Carlberg West</b></sub></a><br /><a href="#ideas-revelcw" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/Andarist"><img src="https://avatars2.githubusercontent.com/u/9800850?v=4" width="100px;" alt=""/><br /><sub><b>Mateusz Burzyński</b></sub></a><br /><a href="https://github.com/donavon/use-dark-mode/commits?author=Andarist" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/wKovacs64"><img src="https://avatars1.githubusercontent.com/u/1288694?v=4" width="100px;" alt=""/><br /><sub><b>Justin Hall</b></sub></a><br /><a href="https://github.com/donavon/use-dark-mode/commits?author=wKovacs64" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/fxbabys"><img src="https://avatars1.githubusercontent.com/u/24556921?v=4" width="100px;" alt=""/><br /><sub><b>Jeremy</b></sub></a><br /><a href="#userTesting-fxbabys" title="User Testing">📓</a> <a href="https://github.com/donavon/use-dark-mode/issues?q=author%3Afxbabys" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="http://janosh.io"><img src="https://avatars0.githubusercontent.com/u/30958850?v=4" width="100px;" alt=""/><br /><sub><b>Janosh Riebesell</b></sub></a><br /><a href="https://github.com/donavon/use-dark-mode/commits?author=janosh" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://hipstersmoothie.com"><img src="https://avatars3.githubusercontent.com/u/1192452?v=4" width="100px;" alt=""/><br /><sub><b>Andrew Lisowski</b></sub></a><br /><a href="https://github.com/donavon/use-dark-mode/commits?author=hipstersmoothie" title="Documentation">📖</a></td>
   </tr>
 </table>
 
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
