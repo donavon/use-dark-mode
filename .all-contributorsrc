@@ -79,6 +79,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "jorgegonzalez",
+      "name": "Jorge Gonzalez",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/12901172?v=4",
+      "profile": "https://jorgegonzalez.io",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

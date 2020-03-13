@@ -196,6 +196,9 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/all-contri
     <td align="center"><a href="http://janosh.io"><img src="https://avatars0.githubusercontent.com/u/30958850?v=4" width="100px;" alt=""/><br /><sub><b>Janosh Riebesell</b></sub></a><br /><a href="https://github.com/donavon/use-dark-mode/commits?author=janosh" title="Documentation">📖</a></td>
     <td align="center"><a href="http://hipstersmoothie.com"><img src="https://avatars3.githubusercontent.com/u/1192452?v=4" width="100px;" alt=""/><br /><sub><b>Andrew Lisowski</b></sub></a><br /><a href="https://github.com/donavon/use-dark-mode/commits?author=hipstersmoothie" title="Documentation">📖</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://jorgegonzalez.io"><img src="https://avatars2.githubusercontent.com/u/12901172?v=4" width="100px;" alt=""/><br /><sub><b>Jorge Gonzalez</b></sub></a><br /><a href="https://github.com/donavon/use-dark-mode/commits?author=jorgegonzalez" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
