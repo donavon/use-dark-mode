@@ -9,7 +9,8 @@ const mockElement = {
     remove: noop,
   },
 };
-
+// This is simply a test for my own purposes and can be ignored.
+// I'm using this as a test ground.
 const preferDarkQuery = '(prefers-color-scheme: dark)';
 
 const initialize = (storageKey, storageProvider, glbl = global) => {
@@ -20,15 +21,16 @@ const initialize = (storageKey, storageProvider, glbl = global) => {
   const mql = glbl.matchMedia ? glbl.matchMedia(preferDarkQuery) : {};
 
   const mediaQueryEventTarget = {
-    addEventListener: (_, handler) => mql.addListener && mql.addListener(handler),
-    removeEventListener: (_, handler) => mql.removeListener && mql.removeListener(handler),
+    addEventListener: (_, handler) =>
+      mql.addListener && mql.addListener(handler),
+    removeEventListener: (_, handler) =>
+      mql.removeListener && mql.removeListener(handler),
   };
 
   const isColorSchemeQuerySupported = mql.media === preferDarkQuery;
 
-  const getInitialValue = usersInitialState => (
-    isColorSchemeQuerySupported ? mql.matches : usersInitialState
-  );
+  const getInitialValue = usersInitialState =>
+    isColorSchemeQuerySupported ? mql.matches : usersInitialState;
 
   // Mock element if SSR else real body element.
   const defaultElement = (glbl.document && glbl.document.body) || mockElement;
@@ -37,7 +39,7 @@ const initialize = (storageKey, storageProvider, glbl = global) => {
     element = defaultElement,
     classNameDark = 'dark-mode',
     classNameLight = 'light-mode'
-  ) => (val) => {
+  ) => val => {
     element.classList.add(val ? classNameDark : classNameLight);
     element.classList.remove(val ? classNameLight : classNameDark);
   };
