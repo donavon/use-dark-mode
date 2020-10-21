@@ -8,7 +8,7 @@ declare module 'use-dark-mode' {
     element?: HTMLElement; // The element to apply the className. Default = `document.body`
     onChange?: (val?: boolean) => void; // Overide the default className handler with a custom callback.
     storageKey?: string; // Specify the `localStorage` key. Default = "darkMode". Set to `null` to disable persistent storage.
-    storageProvider?: WindowLocalStorage; // A storage provider. Default = `localStorage`.
+    storageProvider?: Storage; // A storage provider. Default = `localStorage`.
     global?: Window; // The global object. Default = `window`.
   }
 
