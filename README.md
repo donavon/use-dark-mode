@@ -76,8 +76,8 @@ by default) and an optional `darkModeConfig` object. The configuration object ma
 | `classNameLight`  | The class to apply. Default = `light-mode`.                                                                                                                                                                                                                                                                               |
 | `element`         | The element to apply the class name. Default = `document.body`.                                                                                                                                                                                                                                                           |
 | `onChange`        | A function that will be called when the dark mode value changes and it is safe to access the DOM (i.e. it is called from within a `useEffect`). If you specify `onChange` then `classNameDark`, `classNameLight`, and `element` are ignored (i.e. no classes are automatically placed on the DOM). You have full control! |
-| `storageKey`      | A string that will be used by the `storageProvider` to persist the dark mode value. If you specify a value of `null`, nothing will be persisted. Default = `darkMode`.                                                                                                                                                                                                                   |
-| `storageProvider` | A storage provider. Default = `localStorage`. You will generally never need to change this value.                                                                                                                                                                                                                       |
+| `storageKey`      | A string that will be used by the `storageProvider` to persist the dark mode value. If you specify a value of `null`, nothing will be persisted. Default = `darkMode`.                                                                                                                                                    |
+| `storageProvider` | A storage provider. Default = `localStorage`. You will generally never need to change this value.                                                                                                                                                                                                                         |
 
 ### Return object
 
@@ -173,7 +173,7 @@ export default MyDocument;
 Here is a list of apps build with `use-dark-mode`.
 If you have an app you would like to include on this list, open a PR.
 
-* [Demo App on CodeSandbox](https://codesandbox.io/s/mzj64x80ny) - by [@donavon](https://twitter.com/donavon)
+- [Demo App on CodeSandbox](https://codesandbox.io/s/mzj64x80ny) - by [@donavon](https://twitter.com/donavon)
 
 ## License
 
@@ -203,6 +203,21 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/all-contri
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+## Contributing: Coding Standards & ESLint
+
+Our code formatting rules are defined in .eslintrc. You can check your code against these standards by running:
+
+```
+npm run style
+```
+
+To automatically fix any style violations in your code, you can run:
+
+```
+npm run style -- --fix
+```

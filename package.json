@@ -22,7 +22,8 @@
     "test:watch": "jest --watch --runInBand --silent",
     "prebuild": "npm run lint && npm t && rimraf dist",
     "build": "microbundle -o dist/ --sourcemap false --target web",
-    "dev": "microbundle watch -o dist/ --sourcemap false --compress false"
+    "dev": "microbundle watch -o dist/ --sourcemap false --compress false",
+    "style": "eslint ."
   },
   "keywords": [
     "react-hooks",
