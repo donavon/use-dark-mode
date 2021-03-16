@@ -88,6 +88,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "DoctorDerek",
+      "name": "Dr. Derek Austin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/761231?v=4",
+      "profile": "https://medium.com/@DoctorDerek",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
