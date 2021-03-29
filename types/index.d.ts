@@ -26,7 +26,7 @@ declare module 'use-dark-mode' {
    * A custom React Hook to help you implement a "dark mode" component for your application.
    */
   export default function useDarkMode(
-    initialState?: boolean,
+    initialState?: boolean | (() => boolean),
     config?: DarkModeConfig
   ): DarkMode;
 }
