@@ -174,6 +174,7 @@ Here is a list of apps build with `use-dark-mode`.
 If you have an app you would like to include on this list, open a PR.
 
 * [Demo App on CodeSandbox](https://codesandbox.io/s/mzj64x80ny) - by [@donavon](https://twitter.com/donavon)
+* [Nextjs Website and Blog](https://zemuldo.com/) - by [@zemuldo](https://twitter.com/zemuldo)
 
 ## License
 
